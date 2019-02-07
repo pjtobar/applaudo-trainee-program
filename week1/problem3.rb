@@ -41,11 +41,15 @@ def mode(a)
         end
       end
     end
+
     base = c[0]
     pos = 0
     for k in(0..lenb-2)
-      if (base<c[k+1])
-        pos = k+1
+      if (base<=c[k+1])
+        if(b[pos]<b[k+1])
+          pos = k+1
+          base = c[k+1]
+        end
       end
     end
     b[pos]
