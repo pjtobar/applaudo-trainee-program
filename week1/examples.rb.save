@@ -1,2 +1,2 @@
 puts "Ingrese el primer numero"
-gets.c
+gets.chomp
