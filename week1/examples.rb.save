@@ -1,2 +1,0 @@
-puts "Ingrese el primer numero"
-gets.chomp
