@@ -68,7 +68,6 @@ loop do
 end
 
 
-#a = [3,6,4,7,5,2,3,6,6,2]
 puts "The mean is: #{mean(a)}"
 puts "The median is: #{median(a)}"
 puts "The mode is: #{mode(a)}"

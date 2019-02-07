@@ -21,9 +21,9 @@ end
   puts
 end
 
-puts "Ingrese la letra de inicio"
+puts "Enter the start letter"
 first = gets.chomp
-puts "Ingrese la letra final"
+puts "Enter the final letter"
 last = gets.chomp
 
 alphaIncreasing(first,last)

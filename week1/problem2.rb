@@ -14,5 +14,25 @@ class Array
    end
  end
 
-a = [1,1,1,2,3,3,3,6,6,3,"pablo","pablo"]
+ a = []
+ loop do
+   puts "Enter an input, enter a SPACE to end"
+   val = gets.chomp
+   x=Float(val) rescue false
+   if (val != " ")
+     if(x)
+       if (val.to_f % 1 == 0)
+         a.push(val.to_i)
+       else
+         a.push(val.to_f)
+       end
+     else
+       a.push(val)
+     end
+   else
+     break
+   end
+
+ end
+
 puts "the histogram is #{a.to_histogram}"
