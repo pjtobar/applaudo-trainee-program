@@ -1,29 +1,16 @@
-def alphaIncreasing(first,last)
-  a  = "a".."z"
-  b = []
-  if (first > last)
-    aux = first
-    first = last
-    last =  aux
+def alphaIncreasing(num)
+  num = num.to_i
+  if(num >0 && num <5)
+    a  = "a".."z"*num
+    print a.to_a.join(",")
+    puts
+    puts "the number of elements of the array is: #{a.to_a.length}"
+  else
+    puts("Enter an integer greater than 0 and less than 5")
   end
-  a.to_a.each do |ext|
-    if (first <= ext && last >= ext )
-      a.to_a.each do |int|
-        b.push(ext + int)
-      end
-    end
-  end
-if(!aux)
-  print b.join(",")
-else
-  print b.reverse.join(",")
-end
-  puts
 end
 
-puts "Ingrese la letra de inicio"
-first = gets.chomp
-puts "Ingrese la letra final"
-last = gets.chomp
+puts "Enter the number of iterations"
+num = gets.chomp
 
-alphaIncreasing(first,last)
+alphaIncreasing(num)
