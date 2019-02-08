@@ -25,3 +25,19 @@ call_block {
   puts "In the block"
   puts "second"
   }
+
+class BookInStock
+  attr_reader :isbn
+  attr_accessor :price
+  def initialize(isbn, price)
+    @isbn = isbn
+    @price = Float(price)
+  end
+end
+b1 = BookInStock.new("isbn111", 3)
+b1.price = "pablo"
+p  b1.price
+b2 = BookInStock.new("isbn2", 3.14)
+p b2
+b3 = BookInStock.new("isbn3", "5.67")
+p b3
