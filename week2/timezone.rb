@@ -1,7 +1,12 @@
 require 'time'
 name = "events.csv"
-name_valid = "valid.csv"
-name_invalid = "invalid.csv"
+# name_valid = "valid.csv"
+# name_invalid = "invalid.csv"
+
+puts "Enter the name of the file for valid dates"
+name_valid = gets.chomp
+puts "Enter the name of the file for invalid dates"
+name_invalid = gets.chomp
 
 
 #class to define colors for string
@@ -12,14 +17,19 @@ end
 
 def graph_file(name_valid,arr_pass,arr_error)
   begin
+    total = arr_pass.length + arr_error.length
+    percentage_valid = ((arr_pass.length.to_f/total)*100).round(2)
+    percentage_invalid = ((arr_error.length.to_f/total)*100).round(2)
     file = File.open(name_valid,'a')
       file.puts
       file.puts "GRAPH"
-      file.puts "||"
-      file.puts("||Valids: #{arr_pass.length} " + " " + "▓"*arr_pass.length)
-      file.puts "||"
-      file.puts("||Invalids: #{arr_error.length} " + "▓"*arr_error.length)
-      file.puts "||"
+      file.puts "╔═══════════════════════════════════════════════════════════════════"
+      file.puts "║Valids: #{arr_pass.length}   #{"█"*(percentage_valid / 2)} #{percentage_valid}%"
+      file.puts "║"
+      file.puts "║Invalids: #{arr_error.length} #{"▓"*(percentage_invalid / 2)} #{percentage_invalid}%"
+      file.puts "║           % ───│────│────│────│────│────│────│────│────│────│"
+      file.puts "║               10   20   30   40   50   60   70   80   90   100"
+      file.puts "╚═══════════════════════════════════════════════════════════════════"
   rescue  Exception => e
     puts e.message
   end
@@ -28,15 +38,20 @@ end
 def graph_bash(arr_pass,arr_error)
   begin
     total = arr_pass.length + arr_error.length
-    percentage_valid = ((arr_pass.length.to_f/total)*100) / 2
-    percentage_invalid = ((arr_error.length.to_f/total)*100) / 2
+    percentage_valid = ((arr_pass.length.to_f/total)*100).round(2)
+    percentage_invalid = ((arr_error.length.to_f/total)*100).round(2)
 
     print "\nGRAPH\n"
-    puts "------------------------------------------------------------------------"
-    print("\nValids: #{arr_pass.length} \t")
-    puts "▓".green*percentage_valid
-    print("\nInvalids: #{arr_error.length} \t")
-    puts "▓".red*percentage_invalid
+    puts "╔═══════════════════════════════════════════════════════════════════"
+    print("║\n║Valids: #{arr_pass.length} \t")
+    puts "█".green*(percentage_valid / 2) + "#{percentage_valid}%"
+    print("║\n║Invalids: #{arr_error.length} \t")
+    puts "█".red*(percentage_invalid / 2) + "#{percentage_invalid}%"
+    puts "║"
+    puts "║             % ───│────│────│────│────│────│────│────│────│────│"
+    puts "║                  10   20   30   40   50   60   70   80   90   100"
+    puts "╚═══════════════════════════════════════════════════════════════════"
+
   rescue  Exception => e
     puts "Error: #{e.message}"
   end
