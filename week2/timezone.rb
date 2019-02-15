@@ -1,20 +1,29 @@
 require 'time'
 name = "events.csv"
-# name_valid = "valid.csv"
-# name_invalid = "invalid.csv"
+name_valid = nil
+name_invalid = nil
 
-puts "Enter the name of the file for valid dates"
-name_valid = gets.chomp
-puts "Enter the name of the file for invalid dates"
-name_invalid = gets.chomp
+#Cycle that validates the entry of the names of the resulting files
+loop do
+  puts "Enter the name of the file for valid dates"
+  name_valid = gets.chomp + ".csv"
+  puts "Enter the name of the file for invalid dates"
+  name_invalid = gets.chomp + ".csv"
+  if name_valid != name_invalid
+    break
+  else
+    puts "ERROR, Enter a different name for each file"
+  end
+end
 
 
-#class to define colors for string
+# Class to define colors for string
 class String
   def red;            "\033[31m#{self}\033[0m" end
   def green;          "\033[32m#{self}\033[0m" end
 end
 
+# Method to generate and save graphics in the file
 def graph_file(name_valid,arr_pass,arr_error)
   begin
     total = arr_pass.length + arr_error.length
@@ -31,10 +40,11 @@ def graph_file(name_valid,arr_pass,arr_error)
       file.puts "║               10   20   30   40   50   60   70   80   90   100"
       file.puts "╚═══════════════════════════════════════════════════════════════════"
   rescue  Exception => e
-    puts e.message
+    puts "ERROR, #{e.message}"
   end
 end
 
+# Method to generate the graph of results in bash
 def graph_bash(arr_pass,arr_error)
   begin
     total = arr_pass.length + arr_error.length
@@ -57,7 +67,7 @@ def graph_bash(arr_pass,arr_error)
   end
 end
 
-#Method
+# Method that receives an array of valid dates to generate a file with the results.
 def date_valid(name,arr)
   begin
     File.open(name,'w') do |file|
@@ -66,10 +76,11 @@ def date_valid(name,arr)
       end
     end
   rescue Exception => e
-    puts e.message
+    puts "ERROR, #{e.message}"
   end
 end
 
+# Method that receives an array of invalid dates to generate a file with the results.
 def date_invalid(name,arr)
   begin
     File.open(name,'w') do |file|
@@ -78,10 +89,12 @@ def date_invalid(name,arr)
       end
     end
   rescue Exception => e
-    puts e.message
+    puts "ERROR, #{e.message}"
   end
 end
 
+
+# Process for validating dates
 begin
   count = 0
   arr_pass = []
@@ -103,7 +116,7 @@ begin
     arr_pass = arr_pass.sort
   end
 rescue Errno::ENOENT => e
-  puts "Error, #{e.message}"
+  puts "ERROR, #{e.message}"
 end
 
 
