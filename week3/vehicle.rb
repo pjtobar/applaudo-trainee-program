@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class Vehicle
   attr_accessor :color,
                 :brand,
@@ -11,14 +13,9 @@ class Vehicle
     @wheels = wheels
   end
 
-  class << self
-    def all
-      @@all ||=[]
-    end
-
-    def print_car
-      @color
-    end
-
+  def id
+    @id ||= SecureRandom.uuid
   end
+
+
 end

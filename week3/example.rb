@@ -1,7 +1,18 @@
 require_relative 'vehicle'
 require_relative 'car'
 require_relative 'truck'
+require_relative 'store'
 
-car = Car.new('rojo','toyota','12000','40')
+store = Store.new
 
-car.print_car
+store.create_car
+
+
+store.vehicls.each do |i|
+  puts i.id
+  puts i.color
+  puts i.brand
+  puts i.price
+  puts i.wheels
+  puts '-------------------------------------'
+end
