@@ -13,7 +13,19 @@ extra = Extra.new(names, prices)
 vehicles.create_vehicles
 extra.create_extra
 
-vehicles.all_vehicls.each do |i|
+puts '----------------------------------------------------------'
+puts 'WELCOME TO STORE'
+puts 'Main Menu'
+puts '----------------------------------------------------------'
+puts 'Select an option'
+puts '1- Show available vehicles'
+puts '2- Show available Extras'
+puts '3- Add a vehicle to the store'
+puts '4- Remove a vehicle from the store'
+puts '5- Quote a vehicle'
+
+
+vehicles.all_vehicls.sort_by{|i| i.type}.each do |i|
   puts i.id
   puts i.type
   puts i.color

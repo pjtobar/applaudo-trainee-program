@@ -24,8 +24,12 @@ class Store
     all_vehicls.delete_if { |i| i.id.to_s == id_vehicle.to_s}
   end
 
-  def add_car car
-    all_vehicls << car
+  def add_car(color, brand, price)
+    all_vehicls << Car.new(color,brand,price,4)
+  end
+
+  def add_truck(color, brand, price, wheels)
+    all_vehicls << Truck.new(color,brand,price, wheels)
   end
 
   def select_vehicle id_vehicle
