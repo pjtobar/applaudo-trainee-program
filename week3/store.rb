@@ -21,4 +21,11 @@ class Store
     end
   end
 
+  def create_truck
+    5.times do |i|
+      truck = Truck.new(@@colors.shuffle.first, @@brands.shuffle.first, @@prices.shuffle.first, @@wheels.shuffle.first)
+      vehicls << truck
+    end
+  end
+
 end
