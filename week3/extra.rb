@@ -23,4 +23,8 @@ class Extra
       all_extra << extra
     end
   end
+
+  def exits id_extra
+    all_extra.select {|i|id_extra.to_s == i.id_extra.to_s}
+  end
 end
