@@ -2,18 +2,34 @@ require_relative 'vehicle'
 require_relative 'car'
 require_relative 'truck'
 require_relative 'store'
+require_relative 'extra'
 
-store = Store.new
+names = ['Radio', 'AC', 'Sunroof', 'Leather Seats', 'Power Windows']
+prices = [200, 300, 400, 500, 600]
 
-store.create_vehicles
+
+vehicles = Store.new
+extra = Extra.new(names, prices)
 
 
-store.all_vehicls.each do |i|
+
+vehicles.create_vehicles
+extra.create_extra
+
+
+vehicles.all_vehicls.each do |i|
   puts i.id
   puts i.type
   puts i.color
   puts i.brand
   puts i.price
   puts i.wheels
+  puts '-------------------------------------'
+end
+
+extra.all_extra.each do |i|
+  puts i.id_extra
+  puts i.price
+  puts i.name
   puts '-------------------------------------'
 end

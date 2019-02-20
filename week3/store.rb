@@ -10,7 +10,7 @@ class Store
   @@wheels = [6, 8, 10]
 
   def all_vehicls
-    @@all_vehicls ||=[]
+    @all_vehicls ||=[]
   end
 
   def create_vehicles
