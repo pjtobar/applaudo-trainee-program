@@ -14,8 +14,6 @@ class Vehicle
   end
 
   def id
-    @id ||= SecureRandom.uuid
+    @id ||= SecureRandom.random_number(10_000)
   end
-
-
 end

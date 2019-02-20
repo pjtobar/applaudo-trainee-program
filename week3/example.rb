@@ -5,11 +5,10 @@ require_relative 'store'
 
 store = Store.new
 
-store.create_car
-store.create_truck
+store.create_vehicles
 
 
-store.vehicls.each do |i|
+store.all_vehicls.each do |i|
   puts i.id
   puts i.type
   puts i.color
