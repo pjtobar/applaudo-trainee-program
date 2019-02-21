@@ -34,20 +34,20 @@ while option != 'Exit'
   when 1
     vehicles.all_vehicls.sort_by{|i| i.type}.each do |i|
       puts '-------------------------------------'
-      puts i.id
-      puts i.type
-      puts i.color
-      puts i.brand
-      puts i.price
-      puts i.wheels
+      puts "ID: #{i.id}"
+      puts "Type: #{i.type}"
+      puts "Color: #{i.color}"
+      puts "Brand: #{i.brand}"
+      puts "Price #{i.price}"
+      puts "Wheels: #{i.wheels}"
       puts '-------------------------------------'
     end
   when 2
     extra.all_extra.each do |i|
       puts '-------------------------------------'
-      puts i.id_extra
-      puts i.price
-      puts i.name
+      puts "ID:#{i.id_extra}"
+      puts "Name: #{i.name}"
+      puts "Price #{i.price}"
       puts '-------------------------------------'
     end
   when 3
@@ -76,7 +76,16 @@ while option != 'Exit'
     end
 
   when 4
-    puts 'estamos trabajando en ello'
+    loop do
+      puts 'Enter the id of the vehicle to be deleted'
+      id_vehicle = gets.chomp
+      vehicle = vehicles.select_vehicle id_vehicle
+      if vehicle != []
+        vehicles.delete_vehicle id_vehicle
+        break
+      end
+    end
+
   when 5
     vehicle = []
     loop do
