@@ -6,11 +6,10 @@ class Vehicle
                 :price,
                 :wheels
 
-  def initialize(color, brand, price, wheels)
+  def initialize(color, brand, price)
     @color = color
     @brand = brand
     @price = price
-    @wheels = wheels
   end
 
   def id

@@ -23,17 +23,13 @@ class Store
 
   def self.prices
     @prices ||= [12_000, 6000, 10_000, 8000, 20_000]
-  end
-
-  def self.wheels
-    @wheels ||= [6, 8, 10]
-  end
+  end  
 
 
   def create_vehicles
     5.times do |_i|
-      car = Car.new(self.class.colors.sample, self.class.brands.sample, self.class.prices.sample, 4)
-      truck = Truck.new(self.class.colors.sample, self.class.brands.sample, self.class.prices.sample, self.class.wheels.sample)
+      car = Car.new(self.class.colors.sample, self.class.brands.sample, self.class.prices.sample)
+      truck = Truck.new(self.class.colors.sample, self.class.brands.sample, self.class.prices.sample)
       all_vehicls << car
       all_vehicls << truck
     end
