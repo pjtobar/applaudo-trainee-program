@@ -4,14 +4,11 @@ require_relative 'truck'
 require_relative 'store'
 require_relative 'extra'
 
-names = ['Radio', 'AC', 'Sunroof', 'Leather Seats', 'Power Windows']
-prices = [200, 300, 400, 500, 600]
+Car.create_cars
+Truck.create_trucks
+Extra.create_extra
 
-vehicles = Store.new
-extra = Extra.new(names, prices)
-
-vehicles.create_vehicles
-extra.create_extra
+store = Store.new(Vehicle.all, Extra.all)
 
 option = nil
 
@@ -22,37 +19,24 @@ while option != 'Exit'
   puts 'Main Menu'
   puts '----------------------------------------------------------'
   puts 'Select an option'
-  puts '1- Show available vehicles'
-  puts '2- Show available Extras'
-  puts '3- Add a vehicle to the store'
-  puts '4- Remove a vehicle from the store'
-  puts '5- Quote a vehicle'
-  puts '6- Exit'
+  puts '  1- Show available vehicles'
+  puts '  2- Show available Extras'
+  puts '  3- Add a vehicle to the store'
+  puts '  4- Remove a vehicle from the store'
+  puts '  5- Quote a vehicle'
+  puts '  6- Exit'
   option = gets.chomp.to_i
 
   case option
   when 1
-    vehicles.all_vehicls.sort_by{|i| i.type}.each do |i|
-      puts '-------------------------------------'
-      puts "ID: #{i.id}"
-      puts "Type: #{i.type}"
-      puts "Color: #{i.color}"
-      puts "Brand: #{i.brand}"
-      puts "Price #{i.price}"
-      puts "Wheels: #{i.wheels}"
-      puts '-------------------------------------'
-    end
+    store.list_all_vehicles
   when 2
-    extra.all_extra.each do |i|
-      puts '-------------------------------------'
-      puts "ID:#{i.id_extra}"
-      puts "Name: #{i.name}"
-      puts "Price #{i.price}"
-      puts '-------------------------------------'
-    end
+    store.list_all_extras
   when 3
-    puts '1- Add Car'
-    puts '2- Add Truck'
+    puts
+    puts 'Select an option:'
+    puts '  1- Add Car'
+    puts '  2- Add Truck'
     option_vehicle = gets.chomp.to_i
     if option_vehicle == 1
       puts 'Enter color of the car:'
@@ -61,7 +45,7 @@ while option != 'Exit'
       brand = gets.chomp
       puts 'Enter price of the car'
       price = gets.chomp
-      vehicles.add_car(color, brand, price)
+      store.add_car(color, brand, price)
     elsif option_vehicle == 2
       puts 'Enter color of the car:'
       color = gets.chomp
@@ -69,40 +53,42 @@ while option != 'Exit'
       brand = gets.chomp
       puts 'Enter price of the car'
       price = gets.chomp
-      puts 'Enter number of wheels of the truck'
+      puts 'Enter number of the wheels'
       wheels = gets.chomp
-      vehicles.add_truck(color, brand, price, wheels)
-
+      store.add_truck(color, brand, price, wheels)
     end
+    store.list_all_vehicles
 
   when 4
     loop do
       puts 'Enter the id of the vehicle to be deleted'
       id_vehicle = gets.chomp
-      vehicle = vehicles.select_vehicle id_vehicle
+      vehicle = store.select_vehicle id_vehicle
       if vehicle != []
-        vehicles.delete_vehicle id_vehicle
+        store.delete_vehicle id_vehicle
         break
       end
     end
 
   when 5
     vehicle = []
+    store.list_all_vehicles
     loop do
       puts 'Enter vehicle id to add extras'
       id_vehicle = gets.chomp
-      vehicle = vehicles.select_vehicle id_vehicle
+      vehicle = store.select_vehicle id_vehicle
     break if vehicle != []
     end
 
-    puts "Enter id of the extras you want to add"
+    store.list_all_extras
     extras_arr=[]
     add_more = 'Y'
 
     loop do
       if (add_more == 'Y')
+        puts 'Enter id of the extras you want to add'
         id_extra = gets.chomp
-        if extra.exits(id_extra) == []
+        if Extra.exits(id_extra) == []
           puts 'Extra not found, try again'
         elsif extras_arr.include? id_extra
           puts 'the extra has already been added, try again'
@@ -122,15 +108,7 @@ while option != 'Exit'
         break
       end
     end
-
-    total_extra = 0
-    extras_arr.each do |i|
-      extra_select = extra.all_extra.select {|j|j.id_extra.to_s == i.to_s}
-      total_extra += extra_select[0].price
-    end
-
-    total =  total_extra + vehicle[0].price
-    puts "Total: #{total}"
+    store.quote(extras_arr, vehicle)
   when 6
     break
   else

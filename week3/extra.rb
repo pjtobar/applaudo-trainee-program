@@ -9,22 +9,31 @@ class Extra
     @price ||= price
   end
 
+  def self.names
+    @names ||= ['Radio', 'AC', 'Sunroof', 'Leather Seats', 'Power Windows']
+  end
+
+  def self.prices
+    @prices ||= [200, 300, 400, 500, 600]
+  end
+
+
   def id_extra
     @id_extra ||= SecureRandom.random_number(10000)
   end
 
-  def all_extra
-    @all_extra ||= []
+  def self.all
+    @all ||= []
   end
 
-  def create_extra
-    name.each_with_index do |name, i|
-      extra = Extra.new(name,price[i])
-      all_extra << extra
+  def self.create_extra
+    names.each_with_index do |name, i|
+      extra = self.new(name,prices[i])
+      all << extra
     end
   end
 
-  def exits id_extra
-    all_extra.select {|i|id_extra.to_s == i.id_extra.to_s}
+  def self.exits id_extra
+    all.select {|i|id_extra.to_s == i.id_extra.to_s}
   end
 end
