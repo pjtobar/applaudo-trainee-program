@@ -17,9 +17,8 @@ class Extra
     @prices ||= [200, 300, 400, 500, 600]
   end
 
-
   def id_extra
-    @id_extra ||= SecureRandom.random_number(10000)
+    @id_extra ||= SecureRandom.random_number(10_000)
   end
 
   def self.all
@@ -28,12 +27,12 @@ class Extra
 
   def self.create_extra
     names.each_with_index do |name, i|
-      extra = self.new(name,prices[i])
+      extra = new(name, prices[i])
       all << extra
     end
   end
 
-  def self.exits id_extra
-    all.select {|i|id_extra.to_s == i.id_extra.to_s}
+  def self.exits(id_extra)
+    all.select { |i| id_extra.to_s == i.id_extra.to_s }
   end
 end

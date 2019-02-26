@@ -1,6 +1,5 @@
 require_relative 'vehicle'
 class Truck < Vehicle
-
   attr_accessor :wheels
 
   def type
@@ -13,10 +12,8 @@ class Truck < Vehicle
 
   def self.create_trucks
     5.times do |_i|
-      car = self.new(Vehicle.colors.sample, Vehicle.brands.sample, Vehicle.prices.sample*3)
+      car = new(Vehicle.colors.sample, Vehicle.brands.sample, Vehicle.prices.sample * 3)
       Vehicle.all << car
     end
   end
-
-
-end
+end 
