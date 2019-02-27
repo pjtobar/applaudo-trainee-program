@@ -5,7 +5,7 @@ require_relative 'magic_ball'
 class MagicBallTest < Minitest::Test
   def test_ask_returns_an_answer
     magic_ball = MagicBall.new
-    assert_includes MagicBall::ANSWERS, magic_ball.ask("Is Minitest awesome?")
+    assert_includes MagicBall::ANSWERS, magic_ball.ask('Is Minitest awesome?')
   end
 
   def test_predefined_answers_is_array
@@ -17,7 +17,7 @@ class MagicBallTest < Minitest::Test
   end
 
   def test_raises_error_when_question_is_number
-    assert_raises "Question has invalid format." do
+    assert_raises 'Question has invalid format.' do
       magic_ball = MagicBall.new
       magic_ball.ask(1)
     end
