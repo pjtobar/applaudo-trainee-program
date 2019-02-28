@@ -35,21 +35,27 @@ class CorrectAnswerBehavior
         @purses[@current_player] += 1
         puts "#{@players[@current_player]} now has #{@purses[@current_player]} Gold Coins."
         winner = did_player_win
+        @current_player += 1
+        @current_player = 0 if @current_player == @players.length
+        puts "Player is now #{@players[@current_player]}"
         winner
       else
         puts "#{@players[@current_player]} stays in penalty box"
+        @current_player += 1
+        @current_player = 0 if @current_player == @players.length
+        puts "Player is now #{@players[@current_player]}"
         true
       end
     else
-      puts 'Answer was corrent!!!!'
+      puts 'Answer was correct!!!!'
       @purses[@current_player] += 1
       puts "#{@players[@current_player]} now has #{@purses[@current_player]} Gold Coins."
       winner = did_player_win
+      @current_player += 1
+      @current_player = 0 if @current_player == @players.length
+      puts "Player is now #{@players[@current_player]}"
       winner
     end
-    @current_player += 1
-    @current_player = 0 if @current_player == @players.length
-    puts "Player is now #{@players[@current_player]}"
   end
 
   private
@@ -147,9 +153,11 @@ rescue RuntimeError => e
   puts e.message
 end
 
+include Test::Unit::Assertions
 require 'test/unit/assertions'
-# include Test::Unit::Assertions
 def test_output
+  include Test::Unit::Assertions
+  require 'test/unit/assertions'
   SIMULATIONS_COUNT.times do |index|
     raise 'You need to record simulation results first!' unless FixtureHandler.fixture_exists?(index)
 

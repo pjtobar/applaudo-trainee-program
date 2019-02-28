@@ -41,7 +41,7 @@ class CorrectAnswerBehavior
         true
       end
     else
-      puts 'Answer was corrent!!!!'
+      puts 'Answer was correct!!!!'
       @purses[@current_player] += 1
       puts "#{@players[@current_player]} now has #{@purses[@current_player]} Gold Coins."
       winner = did_player_win
@@ -121,7 +121,7 @@ end
 
 SIMULATIONS_COUNT = 5000
 def run_simulation(index = nil)
-  CorrectAnswerBehavior.new(index).was_correctly_answered
+  CorrectAnswerBehavior.new(index).was_correctly_answered  
 end
 
 def capture_simulation_output(index)
@@ -148,7 +148,7 @@ rescue RuntimeError => e
 end
 
 require 'test/unit/assertions'
-# include Test::Unit::Assertions
+include Test::Unit::Assertions
 def test_output
   SIMULATIONS_COUNT.times do |index|
     raise 'You need to record simulation results first!' unless FixtureHandler.fixture_exists?(index)
