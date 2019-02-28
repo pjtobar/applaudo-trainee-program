@@ -1,4 +1,4 @@
-require_relative 'CorrectAnswerBehavior'
+require_relative 'correct_answer_behavior'
 
 SIMULATIONS_COUNT = 5000
 def run_simulation(index = nil)
