@@ -68,6 +68,7 @@ describe "CorrectAnswerBehavior" do
   end
 end
 
+# method for valid when a player is in or out of penalty box
 def is_in_penalty (game, value)
   array = game.instance_variable_get(:@in_penalty_box)
   index = game.instance_variable_get(:@current_player)

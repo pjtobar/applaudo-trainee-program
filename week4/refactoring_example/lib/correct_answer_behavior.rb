@@ -1,5 +1,6 @@
 # spec/correct_answer_behavior.rb
 class CorrectAnswerBehavior
+  # method to generate a game turn
   def was_correctly_answered
     if @in_penalty_box[@current_player] && @is_getting_out_of_penalty_box
       puts "#{@players[@current_player]} got out of penalty box"
@@ -15,6 +16,7 @@ class CorrectAnswerBehavior
     end
   end
 
+  # method to advance to the next player
   def check_current_player
     @current_player += 1
     @current_player = 0 if @current_player == @players.length
@@ -22,6 +24,7 @@ class CorrectAnswerBehavior
     @current_player
   end
 
+  # method when the answer is correct
   def check_correct_answer
     puts 'Answer was correct!!!!'
     @purses[@current_player] += 1
@@ -33,12 +36,14 @@ class CorrectAnswerBehavior
 
   private
 
+  # method to validate that purses is not 6
   def did_player_win
     (@purses[@current_player] != 6)
   end
 
   public
 
+  # initializer method of the class
   def initialize(seed = nil)
     srand(seed) if seed
     @players = %w[Alice Bob Cecil]
