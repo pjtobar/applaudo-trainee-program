@@ -23,7 +23,7 @@ describe "CorrectAnswerBehavior" do
     end
 
     it "if is_getting_out_of_penalty_box purses must increase by 1" do
-      game =  CorrectAnswerBehavior.new
+      game = CorrectAnswerBehavior.new
       current_player = game.instance_variable_get(:@current_player)
       purses = game.instance_variable_get(:@purses)[current_player]
       value = true
@@ -42,7 +42,7 @@ describe "CorrectAnswerBehavior" do
 
     it "current_player must change to zero when is the last one" do
       game = CorrectAnswerBehavior.new
-      game.instance_variable_set(:@current_player, game.instance_variable_get(:@players).length-1)
+      game.instance_variable_set(:@current_player, game.instance_variable_get(:@players).length - 1)
       expect(game.check_current_player).to eq(0)
     end
 

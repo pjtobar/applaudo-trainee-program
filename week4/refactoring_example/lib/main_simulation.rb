@@ -1,3 +1,4 @@
+# main_simulation.rb
 require_relative 'correct_answer_behavior'
 
 SIMULATIONS_COUNT = 5000
