@@ -1,6 +1,5 @@
 # spec/correct_answer_behavior.rb
 class CorrectAnswerBehavior
-  attr_accessor :in_penalty_box, :current_player, :players, :purses
   def was_correctly_answered
     if @in_penalty_box[@current_player] && @is_getting_out_of_penalty_box
       puts "#{@players[@current_player]} got out of penalty box"
